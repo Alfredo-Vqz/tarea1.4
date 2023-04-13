@@ -6,9 +6,33 @@ import sqlite3
 from random import randrange
 import requests
 
-from .models import Reto, Jugadores, Usuario, partidas
-from .serializers import RetoSerializer, JugadorSerializer, UsuarioSerializer, PartidasSerializer
+from .models import Reto, Jugadores, Usuario, partidas,Gauge
+from .serializers import RetoSerializer, JugadorSerializer, UsuarioSerializer, PartidasSerializer, GaugeSerializer
 from rest_framework import viewsets
+
+###############################################
+############  TAREA 3.3  ######################
+###############################################
+
+def gauge(request):
+    data = []
+    data.append(['Usuario', 'Puntaje'])
+    resultados = Gauge.objects.all()
+    if len(resultados)>0:
+        for registro in resultados:
+            user_name = registro.user_name
+            puntaje = registro.puntaje
+            data.append([user_name, puntaje])
+        data_formato = dumps(data)
+        elJson = {'losDato':data_formato}
+        return render (request, 'gauge.html', elJson)
+    else:
+        return HttpResponse("<h1> No hay registros a mostrar</h1>")
+
+
+class GaugeViewSet(viewsets.ModelViewSet):
+    queryset = Gauge.objects.all()
+    serializer_class = GaugeSerializer
 
 ###############################################
 ############  TAREA 1.4 REST ##################
@@ -208,7 +232,7 @@ def login(request):
 
 
 
-# Clase de las graficas con Martin
+#Clase de las graficas con Martin
 
 def barras(request):
     '''
@@ -345,3 +369,5 @@ class RetoViewSet(viewsets.ModelViewSet):
 class JugadoresViewSet(viewsets.ModelViewSet):
     queryset = Jugadores.objects.all() #select * from Calculadora.Jugadores
     serializer_class = JugadorSerializer
+
+

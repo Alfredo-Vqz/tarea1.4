@@ -8,6 +8,7 @@ router.register(r'reto', views.RetoViewSet)
 router.register(r'jugador', views.JugadoresViewSet)
 router.register(r'usuario', views.UsuarioViewSet)
 router.register(r'partidas', views.PartidasViewSet)
+router.register(r'gauge', views.GaugeViewSet)
 
 
 urlpatterns = [
@@ -30,4 +31,5 @@ urlpatterns = [
     path('valida_usuario', views.valida_usuario, name='valida_usuario'),
     path('login2', views.login2, name='login2'),
     path('procesologin', views.procesologin, name='procesologin'),
+    path('gauge', views.gauge, name='gauge'),
 ]

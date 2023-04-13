@@ -1,5 +1,11 @@
 from django.contrib import admin
-from .models import Reto,Jugadores, Usuario, partidas
+from .models import Reto,Jugadores, Usuario, partidas, Gauge
+
+###############################################
+############  TAREA 3.3  ######################
+###############################################
+
+admin.site.register(Gauge)
 
 ###############################################
 ############  TAREA 1.4 REST ##################

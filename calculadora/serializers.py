@@ -1,6 +1,14 @@
 from rest_framework import serializers
-from . models import Reto, Jugadores, Usuario, partidas
+from . models import Reto, Jugadores, Usuario, partidas, Gauge
 
+###############################################
+############  TAREA 3.3  ######################
+###############################################
+
+class GaugeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Gauge
+        fields = ('id', 'user_name', 'puntaje')
 
 ###############################################
 ############  TAREA 1.4 REST ##################
